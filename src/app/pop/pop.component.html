@@ -1,0 +1,47 @@
+@if (PopGroupData) {
+    <div class="modal" tabindex="-1" aria-hidden="true" style="display: block;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Adatok rögzítése</h5>
+              <button type="button"  class="btn-close" (click)="cancel()"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="popid" class="form-label">Azonosító</label>
+                        <input type="text" class="form-control" id="popid" [value]="PopGroupData?.id" (change)="PopGroupData!.id = getValue($event)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="religion" class="form-label">Vallás</label>
+                        <select class="form-select" id="religion" [value]="PopGroupData?.religion" (change)="PopGroupData!.religion = getValue($event)">
+                            <option selected>Válassz...</option>
+                            <option value="Roman Catholic">Roman Catholic</option>
+                            <option value="Calvinist">Calvinist</option>
+                            <option value="Lutheran">Lutheran</option>
+                            <option value="Eastern Orthodox">Eastern Orthodox</option>
+                            <option value="Jewish">Jewish</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="totalPop" class="form-label">Lélekszám</label>
+                        <input type="number" class="form-control" id="totalPop" min="1" [value]="PopGroupData!.population" (change)="PopGroupData!.population = getValue($event)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="culture" class="form-label">Kultúra</label>
+                        <input type="text" class="form-control" id="culture"  [value]="PopGroupData!.culture" (change)="PopGroupData!.culture = getValue($event)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="profession" class="form-label">Foglalkozás</label>
+                        <input type="email" class="form-control" id="profession"  [value]="PopGroupData!.profession" (change)="PopGroupData!.profession = getValue($event)">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="cancel()">Mégsem</button>
+              <button type="button" class="btn btn-success" (click)="save()">Mentés</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
