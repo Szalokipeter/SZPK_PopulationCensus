@@ -1,0 +1,26 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set Image tag
+      run: |
+        echo "IMAGE_TAG=$(date +%s)" >> $GITHUB_ENV
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: |
+        docker build . --file Dockerfile --tag ghcr.io/Szalokipeter/SZPK_PopulationCensus:$IMAGE_TAG --tag ghcr.io/Szalokipeter/SZPK_PopulationCensus:latest
+        docker login ghcr.io --username Szalokipeter --password ${{secrets.GHCR_TOKEN}}
+        docker push ghcr.io/Szalokipeter/SZPK_PopulationCensus:$IMAGE_TAG
+        docker push ghcr.io/Szalokipeter/SZPK_PopulationCensus:latest
+        
