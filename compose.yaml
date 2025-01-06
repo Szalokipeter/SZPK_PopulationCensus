@@ -1,0 +1,11 @@
+services:
+  jsonserver:
+    build: ./db
+    ports:
+      - 3000:3000
+  angular:
+    build: .
+    ports:
+      - 8080:80
+    depends_on:
+      - jsonserver
